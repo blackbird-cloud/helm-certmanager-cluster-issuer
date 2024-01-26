@@ -1,0 +1,11 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: {{ include "chart.fullname" . }}
+spec:
+  acme:
+    server: {{ .Values.acme.server }}
+    email: {{ .Values.acme.email }}
+    privateKeySecretRef:
+      name: {{ .Values.privateKeySecretRef }}
+    solvers: {{ toYaml .Values.solvers | nindent 6 }}
